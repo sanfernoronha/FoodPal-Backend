@@ -19,12 +19,6 @@ const orderItems = new Schema({
 });
 
 const orders = new Schema({
-    id: {
-        type: String,
-        unique: true,
-        required: true,
-        trim: true
-    },
     tableNumber: {
         type: Number,
         trim: true,
@@ -53,6 +47,7 @@ const orders = new Schema({
 },
 {
     timestamps: true,
+
 });
 
 const dishSchema = new Schema({
@@ -69,7 +64,14 @@ const dishSchema = new Schema({
 });
 
 const menuSectionSchema = new Schema({
-    dishes: [dishSchema],
+    name: {
+        type: String,
+        required: true,
+        minlength: 3
+    },
+    items: [dishSchema]
+
+
 });
 
 const tableSchema = new Schema({
@@ -78,7 +80,7 @@ const tableSchema = new Schema({
         required: true,
         minlength: 3,
     },
-    capactiy: {
+    capacity: {
         type: Number,
         required: true,
     }
