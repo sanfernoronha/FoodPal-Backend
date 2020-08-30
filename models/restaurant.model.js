@@ -2,53 +2,9 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const orderItems = new Schema({
-    itemName: {
-        type: String,
-        minlength: 3,
-        required: true,
-    },
-    quantity: {
-        type: Number,
-        required: true,
-    },
-    price: {
-        type: Number,
-        required: true,
-    }
-});
 
-const orders = new Schema({
-    tableNumber: {
-        type: Number,
-        trim: true,
-    },
-    isPrepared: {
-        type: Boolean,
-        required: true,
-    },
-    isPreparing: {
-        type: Boolean,
-        required: true,
-    },
-    isServed: {
-        type: Boolean,
-        required: true,
-    },
-    total: {
-        type: Number,
-        required: true,
-    },
-    isPaid: {
-        type: Boolean,
-        required: true,
-    },
-    items: [orderItems],
-},
-{
-    timestamps: true,
 
-});
+
 
 const dishSchema = new Schema({
     name: {
@@ -100,7 +56,53 @@ const restaurantSchema = new Schema({
         minlength: 3,
 
     },
-    orders: [orders],
+    orders: [
+        {
+            tableNumber: {
+                type: Number,
+                trim: true,
+            },
+            isPrepared: {
+                type: Boolean,
+                required: true,
+            },
+            isPreparing: {
+                type: Boolean,
+                required: true,
+            },
+            isServed: {
+                type: Boolean,
+                required: true,
+            },
+            total: {
+                type: Number,
+                required: true,
+            },
+            isPaid: {
+                type: Boolean,
+                required: true,
+            },
+            items: [{
+                itemName: {
+                    type: String,
+                    minlength: 3,
+                    required: true,
+                },
+                quantity: {
+                    type: Number,
+                    required: true,
+                },
+                price: {
+                    type: Number,
+                    required: true,
+                }
+            }],
+        },
+        {
+            timestamps: true,
+        
+        }
+    ],
     menu: [menuSectionSchema],
     tables: [tableSchema]
 

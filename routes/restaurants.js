@@ -10,14 +10,14 @@ router.route('/').get((req,res) =>{
 router.route('/add').post((req,res) => {
     const name = req.body.name;
     const city = req.body.city;
-    // const orders = req.body.orders;
+    const orders = null
     const menu = req.body.menu;
     const tables = req.body.tables;
 
     const newRestaurant = new Restaurant({
         name,
         city,
-        // orders,
+        orders,
         menu,
         tables,
     });
