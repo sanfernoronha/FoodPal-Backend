@@ -116,4 +116,9 @@ const restaurantSchema = new Schema({
 
 const restaurant = mongoose.model('restaurant', restaurantSchema);
 
+
+/**
+ * A module for the restaurant schema
+ * @module restaurant
+ */
 module.exports = restaurant;
