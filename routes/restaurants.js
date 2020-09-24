@@ -169,6 +169,45 @@ router.route('/:id').patch((req,res) => {
     })
 });
 
+router.route('/order').post((req,res) => {
+    Restaurant.findById(req.body.res_id)
+    .then(restaurant => {
+        var total_price = 0.0;
+        var final_orders = [];
+
+        var orders = req.body.items;
+        orders.forEach( order => {
+            total_price += order.quantity * order.price
+        });
+
+        orders.forEach( order => {
+            final_orders.push({
+                itemName: order.name,
+                quantity: order.quantity,
+                price: order.price
+            });
+        });
+        if(restaurant.orders == null){
+            restaurant.orders = [];
+        }
+        
+
+        restaurant.orders.push({
+            tableNumber: req.body.table_no,
+            isPrepared: false,
+            isPreparing: false,
+            isServed: false,
+            total: total_price,
+            isPaid: false,
+            orders: final_orders
+        });
+
+        restaurant.save()
+        .then(() => res.status(200).json('Order placed'))
+        .catch(err => res.status(400).json('Error: ' + err));
+    });
+});
+
 
 
 

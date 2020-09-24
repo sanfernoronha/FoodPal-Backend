@@ -59,7 +59,7 @@ const restaurantSchema = new Schema({
     orders: [
         {
             tableNumber: {
-                type: Number,
+                type: String,
                 trim: true,
             },
             isPrepared: {
@@ -117,8 +117,5 @@ const restaurantSchema = new Schema({
 const restaurant = mongoose.model('restaurant', restaurantSchema);
 
 
-/**
- * A module for the restaurant schema
- * @module restaurant
- */
+
 module.exports = restaurant;
