@@ -3,7 +3,17 @@ const router = require('express').Router();
 let Restaurant = require('../models/restaurant.model');
 
 
-
+/**
+ * @api {get} http://localhost:5000/restaurant/ Get restaurants
+ * @apiName GetRestaurants
+ * @apiGroup Restaurant
+ * 
+ * @apiSuccess {Object[]} restaurants List of restaurants
+ * @apiError 400 Error
+ * @apiError 403 Unauthorized
+ * 
+ * 
+ */
 router.route('/').get((req,res) =>{
     Restaurant.find()
     .then(restaurant => res.status(200).json(restaurant))
