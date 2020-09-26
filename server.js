@@ -20,8 +20,10 @@ const connectDB = require("./services/connection");
 connectDB();
 
 const restaurantRouter = require('./routes/restaurants');
+const customerRouter = require('./routes/customers');
 
 app.use('/restaurants',restaurantRouter);
+app.use('/customers',customerRouter);
 
 
 app.listen(port, () => {

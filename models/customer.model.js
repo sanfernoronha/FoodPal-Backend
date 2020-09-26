@@ -53,6 +53,12 @@ const customerSchema = new Schema({
         type: String,
         trim: true
     },
+    phone_number: {
+        type: Number,
+        trim: true,
+        maxlength: 10,
+        required: true
+    },
     orders: [ordersSchema]
 },
 {

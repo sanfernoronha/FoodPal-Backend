@@ -4,7 +4,7 @@ let Restaurant = require('../models/restaurant.model');
 
 
 /**
- * @api {get} http://localhost:5000/restaurant/ Get restaurants
+ * @api {get} http://localhost:5000/restaurants/ Get restaurants
  * @apiName GetRestaurants
  * @apiGroup Restaurant
  * 
