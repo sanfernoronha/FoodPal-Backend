@@ -40,7 +40,54 @@ const tableSchema = new Schema({
         type: Number,
         required: true,
     }
-})
+});
+
+const ordersSchema = new Schema({
+    tableNumber: {
+        type: String,
+        trim: true,
+    },
+    isPrepared: {
+        type: Boolean,
+        required: true,
+    },
+    isPreparing: {
+        type: Boolean,
+        required: true,
+    },
+    isServed: {
+        type: Boolean,
+        required: true,
+    },
+    total: {
+        type: Number,
+        required: true,
+    },
+    isPaid: {
+        type: Boolean,
+        required: true,
+    },
+    items: [{
+        itemName: {
+            type: String,
+            minlength: 3,
+            required: true,
+        },
+        quantity: {
+            type: Number,
+            required: true,
+        },
+        price: {
+            type: Number,
+            required: true,
+        }
+    }],
+},
+{
+    timestamps: true
+
+}
+);
 
 const restaurantSchema = new Schema({
     name: {
@@ -56,53 +103,7 @@ const restaurantSchema = new Schema({
         minlength: 3,
 
     },
-    orders: [
-        {
-            tableNumber: {
-                type: String,
-                trim: true,
-            },
-            isPrepared: {
-                type: Boolean,
-                required: true,
-            },
-            isPreparing: {
-                type: Boolean,
-                required: true,
-            },
-            isServed: {
-                type: Boolean,
-                required: true,
-            },
-            total: {
-                type: Number,
-                required: true,
-            },
-            isPaid: {
-                type: Boolean,
-                required: true,
-            },
-            items: [{
-                itemName: {
-                    type: String,
-                    minlength: 3,
-                    required: true,
-                },
-                quantity: {
-                    type: Number,
-                    required: true,
-                },
-                price: {
-                    type: Number,
-                    required: true,
-                }
-            }],
-        },
-        {
-            timestamps: true,
-        
-        }
-    ],
+    orders: [ordersSchema],
     menu: [menuSectionSchema],
     tables: [tableSchema]
 
