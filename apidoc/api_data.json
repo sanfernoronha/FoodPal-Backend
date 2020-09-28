@@ -70,7 +70,198 @@
   },
   {
     "type": "post",
-    "url": "http://localhost:5000/restaurant/order",
+    "url": "http://localhost:5000/orders/add",
+    "title": "Add Order",
+    "name": "AddOrder",
+    "group": "Order",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "userId",
+            "description": "<p>Id of the user making the order</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "restaurantId",
+            "description": "<p>Id of the restaurant taking the order</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "tableNumber",
+            "description": "<p>Table number to be served</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Object[]",
+            "optional": false,
+            "field": "items",
+            "description": "<p>Items ordered</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "items[itemName]",
+            "description": "<p>Name of the item</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "items[quantity]",
+            "description": "<p>Quantity of the ordered item</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Number",
+            "optional": false,
+            "field": "items[price]",
+            "description": "<p>Price of the item</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "json-response",
+            "description": "<p>Order placed!</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Error</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Unauthorized</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/orders.js",
+    "groupTitle": "Order"
+  },
+  {
+    "type": "get",
+    "url": "http://localhost:5000/orders/:id",
+    "title": "Get Order by id",
+    "name": "GetOrderById",
+    "group": "Order",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Order id</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "Order",
+            "description": "<p>object</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Error</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Unauthorized</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/orders.js",
+    "groupTitle": "Order"
+  },
+  {
+    "type": "get",
+    "url": "http://localhost:5000/orders/",
+    "title": "Get orders",
+    "name": "GetOrders",
+    "group": "Order",
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object[]",
+            "optional": false,
+            "field": "orders",
+            "description": "<p>List of orders</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "400",
+            "description": "<p>Error</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "403",
+            "description": "<p>Unauthorized</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/orders.js",
+    "groupTitle": "Order"
+  },
+  {
+    "type": "post",
+    "url": "http://localhost:5000/restaurants/order",
     "title": "Add orders at restaurant",
     "name": "AddOrders",
     "group": "Restaurant",
@@ -381,10 +572,23 @@
   },
   {
     "type": "delete",
-    "url": "http://localhost:5000/restaurant/:id",
+    "url": "http://localhost:5000/restaurants/:id",
     "title": "Delete Restaurant by Id",
     "name": "DeleteRestaurantById",
     "group": "Restaurant",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Restaurant id</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
@@ -463,10 +667,23 @@
   },
   {
     "type": "get",
-    "url": "http://localhost:5000/restaurant/:id",
+    "url": "http://localhost:5000/restaurants/:id",
     "title": "Get Restaurant by id",
     "name": "GetUserById",
     "group": "Restaurant",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Restaurant id</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [
@@ -504,13 +721,20 @@
   },
   {
     "type": "patch",
-    "url": "http://localhost:5000/restaurant/:id",
+    "url": "http://localhost:5000/restaurants/:id",
     "title": "Update Restaurant by Id",
     "name": "UpdateRestaurantById",
     "group": "Restaurant",
     "parameter": {
       "fields": {
         "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id",
+            "description": "<p>Restaurant id</p>"
+          },
           {
             "group": "Parameter",
             "type": "String",
