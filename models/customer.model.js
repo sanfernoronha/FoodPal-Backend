@@ -49,6 +49,11 @@ const customerSchema = new Schema({
         required: true,
         trim: true
     },
+    password: {
+        type: String,
+        required: true,
+        minlength: 4
+    },  
     city: {
         type: String,
         trim: true
