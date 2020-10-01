@@ -4,7 +4,13 @@ const mongoose = require("mongoose");
 
 require("dotenv").config();
 
+
+
 const app = express();
+
+require('./routes/auth')(app);
+
+
 const port = process.env.PORT || 5000;
 
 app.use(cors());
