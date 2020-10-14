@@ -1,8 +1,8 @@
 let Customer = require('../models/customer.model.js');
 
 
-checkDuplicateUsernameOrEmail = (req,res,next) => {
-
+const checkDuplicateUsernameOrEmail = (req,res,next) => {
+ 
     //username
     Customer.findOne({
         name : req.body.name
@@ -37,6 +37,7 @@ checkDuplicateUsernameOrEmail = (req,res,next) => {
 
     });
 };
+
 
 const verifySignUp = {
     checkDuplicateUsernameOrEmail

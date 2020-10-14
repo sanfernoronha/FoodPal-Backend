@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require("bcryptjs")
 
 const Schema = mongoose.Schema;
 
@@ -70,6 +71,7 @@ const customerSchema = new Schema({
     timestamps: true
 }
 );
+
 
 
 const customer = mongoose.model('customer',customerSchema);

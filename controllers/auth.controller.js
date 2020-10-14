@@ -5,22 +5,17 @@ var jwt = require('jsonwebtoken');
 var bcrypt = require('bcryptjs');
 
 exports.signup = (req,res) => {
+    
     const customer = new Customer({
         name: req.body.name,
         email: req.body.email,
         password: bcrypt.hashSync(req.body.password,8),
         city: req.body.city,
         phone_number: req.body.phone_number,
-        orders = null
+        orders : null
     });
 
-    customer.save((err,customer) => {
-        if(err) {
-            res.status(500).send({message : err});
-            return;
-        }
-        res.send({message: "User was regestered successfully"});
-    });
+    customer.save().then(() => res.status(200).json("Customer added!")).catch((err) => res.status(400).json("Error: " + err));
 };
 
 exports.signin = (req,res) => {
@@ -38,7 +33,7 @@ exports.signin = (req,res) => {
         }
 
 
-        var passwordIsValid = bcrypt.compareSync(req.body.password,user.password);
+        var passwordIsValid = bcrypt.compareSync(req.body.password,customer.password);
 
         if(!passwordIsValid){
             return res.status(401).send({
