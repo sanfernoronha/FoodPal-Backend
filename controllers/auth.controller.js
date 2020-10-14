@@ -10,7 +10,7 @@ exports.signup = (req,res) => {
         name: req.body.name,
         email: req.body.email,
         password: bcrypt.hashSync(req.body.password,8),
-        city: req.body.city,
+        city: req.body.city == null ? "" : req.body.city,
         phone_number: req.body.phone_number,
         orders : null
     });

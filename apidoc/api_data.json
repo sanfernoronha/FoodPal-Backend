@@ -1,9 +1,9 @@
 [
   {
-    "type": "put",
-    "url": "http://localhost:5000/customers/add",
-    "title": "Add customer",
-    "name": "AddCustomer",
+    "type": "post",
+    "url": "http://localhost:5000/api/auth/signup",
+    "title": "Customer signup",
+    "name": "Customer_Signup",
     "group": "Customer",
     "parameter": {
       "fields": {
@@ -20,7 +20,14 @@
             "type": "String",
             "optional": false,
             "field": "email",
-            "description": "<p>Email Id of the customer</p>"
+            "description": "<p>Email of the customer</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>Password of the customer (Min Length <code>4</code>)</p>"
           },
           {
             "group": "Parameter",
@@ -46,8 +53,8 @@
             "group": "Success 200",
             "type": "String",
             "optional": false,
-            "field": "success_msg",
-            "description": "<p>Customer added</p>"
+            "field": "json-response",
+            "description": "<p>Customer Added</p>"
           }
         ]
       }
@@ -65,8 +72,75 @@
       }
     },
     "version": "0.0.0",
-    "filename": "routes/customers.js",
+    "filename": "routes/auth.js",
     "groupTitle": "Customer"
+  },
+  {
+    "type": "post",
+    "url": "http://localhost:5000/api/auth/signin",
+    "title": "Customer signin",
+    "group": "Customer",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "name",
+            "description": "<p>Name of the customer</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "password",
+            "description": "<p>Password of the customer (Min Length <code>4</code>)</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "Success 200": [
+          {
+            "group": "Success 200",
+            "type": "Object",
+            "optional": false,
+            "field": "json-response",
+            "description": "<p>Customer</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "Error 4xx": [
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "404",
+            "description": "<p>User not found</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "401",
+            "description": "<p>Password incorrect</p>"
+          },
+          {
+            "group": "Error 4xx",
+            "optional": false,
+            "field": "500",
+            "description": "<p>Error</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/auth.js",
+    "groupTitle": "Customer",
+    "name": "PostHttpLocalhost5000ApiAuthSignin"
   },
   {
     "type": "post",
