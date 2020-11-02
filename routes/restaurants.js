@@ -193,9 +193,7 @@ router.route("/order").post((req, res) => {
 
     restaurant.orders.push({
       tableNumber: req.body.table_no,
-      isPrepared: false,
-      isPreparing: false,
-      isServed: false,
+      
       total: total_price,
       isPaid: false,
       items: final_orders,

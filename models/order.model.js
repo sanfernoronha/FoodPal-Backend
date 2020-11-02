@@ -15,18 +15,6 @@ const ordersSchema = new Schema(
       type: String,
       trim: true,
     },
-    isPrepared: {
-      type: Boolean,
-      required: true,
-    },
-    isPreparing: {
-      type: Boolean,
-      required: true,
-    },
-    isServed: {
-      type: Boolean,
-      required: true,
-    },
     total: {
       type: Number,
       required: true,
@@ -50,6 +38,18 @@ const ordersSchema = new Schema(
           type: Number,
           required: true,
         },
+        isPrepared:{
+          type: Boolean,
+          required: true,
+        },
+        isPreparing:{
+          type: Boolean,
+          required: true,
+        },
+        isServed:{
+          type:Boolean,
+          requird: true,
+        }
       },
     ],
   },
