@@ -17,7 +17,7 @@ router.route("/").get((req, res) => {
 });
 
 /**
- * @api {get} http://localhost:5000/orders/:id Get Order by id
+ * @api {get} http://localhost:5000/orders/:id Get Order by Id
  * @apiName GetOrderById
  * @apiGroup Order
  *
@@ -89,18 +89,19 @@ router.route("/add").post((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-router.route("/updateStatus/:id/:Iid").patch(async(req, res)=>{
-  Order.findById(req.params.id).then(async (order)=>{
+router.route("/updateStatus/:id/:Iid").patch(async (req, res) => {
+  Order.findById(req.params.id).then(async (order) => {
     console.log("Milaa");
-    const item = await order.findOne({ _id: req.params.Iid })
+    const item = await order.findOne({ _id: req.params.Iid });
     item.specials.update({
-      isPreparing: req.body.isPreparing
-    })
-    
-    const updated = await item.save()
-    .then(()=>res.status(200),json("Item Updated"))
-    .catch((err)=> res.status(400).json("Error: "+ err));
-    console.log(updated)
+      isPreparing: req.body.isPreparing,
+    });
+
+    const updated = await item
+      .save()
+      .then(() => res.status(200), json("Item Updated"))
+      .catch((err) => res.status(400).json("Error: " + err));
+    console.log(updated);
   });
 });
 // Article.update({'comments._id': comment_id},

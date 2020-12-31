@@ -69,10 +69,10 @@ router.route("/add").post((req, res) => {
 });
 
 /**
- * @api {get} http://localhost:5000/restaurants/:id Get Restaurant by id
+ * @api {get} http://localhost:5000/restaurants/:id Get Restaurant by Id
  * @apiName GetUserById
  * @apiGroup Restaurant
- * 
+ *
  * @apiParam {String} id Restaurant id
  *
  * @apiSuccess {Object} Restaurant object
@@ -107,7 +107,7 @@ router.route("/:id").delete((req, res) => {
  * @api {patch} http://localhost:5000/restaurants/:id Update Restaurant by Id
  * @apiName UpdateRestaurantById
  * @apiGroup Restaurant
- * 
+ *
  * @apiParam {String} id Restaurant id
  *
  * @apiParam {String} name Name of the Restaurant
@@ -193,7 +193,7 @@ router.route("/order").post((req, res) => {
 
     restaurant.orders.push({
       tableNumber: req.body.table_no,
-      
+
       total: total_price,
       isPaid: false,
       items: final_orders,
