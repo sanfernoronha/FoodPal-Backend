@@ -25,7 +25,7 @@ const orderRouter = require("./routes/orders");
 
 require("./routes/auth")(app);
 require("./routes/customers")(app);
-app.use("/restaurants", restaurantRouter);
+require("./routes/restaurants")(app);
 // app.use("/customers", customerRouter);
 app.use("/orders", orderRouter);
 
