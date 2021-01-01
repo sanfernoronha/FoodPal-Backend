@@ -7,27 +7,6 @@ exports.getAllRestaurants = (req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 };
 
-exports.addRestaurants = (req, res) => {
-  const name = req.body.name;
-  const city = req.body.city;
-  const orders = null;
-  const menu = req.body.menu;
-  const tables = req.body.tables;
-
-  const newRestaurant = new Restaurant({
-    name,
-    city,
-    orders,
-    menu,
-    tables,
-  });
-
-  newRestaurant
-    .save()
-    .then(() => res.status(200).json("Restaurant added!"))
-    .catch((err) => res.status(400).json("Error: " + err));
-};
-
 exports.getRestaurantById = (req, res) => {
   Restaurant.findById(req.params.id)
     .then((restaurant) => res.status(200).json(restaurant))
