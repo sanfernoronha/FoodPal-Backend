@@ -17,7 +17,7 @@ router.route("/").get((req, res) => {
 });
 
 /**
- * @api {get} http://localhost:5000/orders/:id Get Order by id
+ * @api {get} http://localhost:5000/orders/:id Get Order by Id
  * @apiName GetOrderById
  * @apiGroup Order
  *
@@ -55,9 +55,9 @@ router.route("/add").post((req, res) => {
   const userId = req.body.userId;
   const restaurantId = req.body.restaurantId;
   const tableNumber = req.body.tableNumber;
-  const isPrepared = false;
-  const isPreparing = false;
-  const isServed = false;
+  // const isPrepared = false;
+  // const isPreparing = false;
+  // const isServed = false;
   const isPaid = false;
   var total = 0.0;
   var items = [];
@@ -68,6 +68,9 @@ router.route("/add").post((req, res) => {
       itemName: order.itemName,
       quantity: order.quantity,
       price: order.price,
+      isPrepared: false,
+      isPreparing: false,
+      isServed: false,
     });
   });
 
@@ -75,9 +78,6 @@ router.route("/add").post((req, res) => {
     userId,
     restaurantId,
     tableNumber,
-    isPrepared,
-    isPreparing,
-    isServed,
     total,
     isPaid,
     items,
@@ -89,4 +89,33 @@ router.route("/add").post((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+router.route("/updateStatus/:id/:Iid").patch(async (req, res) => {
+  Order.findById(req.params.id).then(async (order) => {
+    console.log("Milaa");
+    const item = await order.findOne({ _id: req.params.Iid });
+    item.specials.update({
+      isPreparing: req.body.isPreparing,
+    });
+
+    const updated = await item
+      .save()
+      .then(() => res.status(200), json("Item Updated"))
+      .catch((err) => res.status(400).json("Error: " + err));
+    console.log(updated);
+  });
+});
+// Article.update({'comments._id': comment_id},
+//       {'$set': {
+//              'comments.$.post': "this is Update comment",
+// 	   }},
+//           function(err,model) {
+// 	   	if(err){
+//         	console.log(err);
+//         	return res.send(err);
+//         }
+//         return res.json(model);
+//  });
+
 module.exports = router;
+
+//http://localhost:5000/orders/updateSt/5f717e1fb7f85037e80ce555

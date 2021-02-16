@@ -1,52 +1,100 @@
-const { verifySignUp } = require("../middlewares");
+const { verifySignUpCustomer } = require("../middlewares");
+const { verifySignUpRestaurant } = require("../middlewares");
 const controller = require("../controllers/auth.controller.js");
 
-
-module.exports = function(app) {
-    app.use(function(req, res, next) {
-      res.header(
-        "Access-Control-Allow-Headers",
-        "x-access-token, Origin, Content-Type, Accept"
-      );
-      next();
-    });
-
-    /**
-     * @api {post} http://localhost:5000/api/auth/signup Customer signup
-     * @apiName Customer Signup
-     * @apiGroup Customer
-     * 
-     * @apiParam {String} name Name of the customer
-     * @apiParam {String} email Email of the customer
-     * @apiParam {String} password Password of the customer (Min Length <code>4</code>)
-     * @apiParam {String} [city] City of the customer 
-     * @apiParam {Number} phone_number Phone number of the customer
-     * 
-     * @apiSuccess {String} json-response Customer Added
-     * @apiError 400 Error
-     */
-    app.post(
-      "/api/auth/signup",
-      [
-        verifySignUp.checkDuplicateUsernameOrEmail
-      ],
-      controller.signup
+module.exports = function (app) {
+  app.use(function (req, res, next) {
+    res.header(
+      "Access-Control-Allow-Headers",
+      "x-access-token, Origin, Content-Type, Accept"
     );
+    next();
+  });
 
-    /**
-     * @api {post} http://localhost:5000/api/auth/signin Customer signin
-     * @apiGroup Customer
-     * 
-     * @apiParam {String} name Name of the customer
-     * @apiParam {String} password Password of the customer (Min Length <code>4</code>)
-     * 
-     * @apiSuccess {Object} json-response Customer
-     * @apiError 404 User not found
-     * @apiError 401 Password incorrect
-     * @apiError 500 Error
-     */
-    app.post("/api/auth/signin",controller.signin);
+  /**
+   * @api {post} http://localhost:5000/customer/signup Customers signup
+   * @apiName Customer Signup
+   * @apiGroup Customer
+   *
+   * @apiParam {String} name Name of the customer
+   * @apiParam {String} email Email of the customer
+   * @apiParam {String} password Password of the customer (Min Length <code>4</code>)
+   * @apiParam {String} [city] City of the customer
+   * @apiParam {Number} phone_number Phone number of the customer
+   *
+   * @apiSuccess {String} json-response Customer Added
+   * @apiError 400 Error
+   */
+  app.post(
+    "/customer/signup",
+    [verifySignUpCustomer.checkDuplicateUsernameOrEmail],
+    controller.signup
+  );
 
-  
-    
-  };
+  /**
+   * @api {post} http://localhost:5000/customer/signin Customers signin
+   * @apiName Customer Signin
+   * @apiGroup Customer
+   *
+   * @apiParam {String} name Name of the customer
+   * @apiParam {String} password Password of the customer (Min Length <code>4</code>)
+   *
+   * @apiSuccess {Object} json-response Customer
+   * @apiError 404 User not found
+   * @apiError 401 Password incorrect
+   * @apiError 500 Error
+   */
+  app.post("/customer/signin", controller.signin);
+
+  /**
+   * @api {post} http://localhost:5000/restaurant/signup Restaurants signup
+   * @apiName Restaurants signup
+   * @apiGroup Restaurant
+   *
+   * @apiParam {String} name Name of the Restaurant
+   * @apiParam {String} city City where restaurant is located
+   * @apiParam {Object[]} orders Array of orders
+   * @apiParam {Object[]} orders[items] Array containing ordered items
+   * @apiParam {String} items[itemName] Name of the item
+   * @apiParam {Number} items[quantity] Quantity ordered of the item
+   * @apiParam {Number} items[price] Price of item
+   * @apiParam {Number} orders[tableNumber] Table number
+   * @apiParam {Boolean} orders[isPrepared] Preparation status of item
+   * @apiParam {Boolean} orders[isPreparing] Preparation commencement status
+   * @apiParam {Boolean} orders[isServed] Service Status of the item
+   * @apiParam {Number} orders[total] Total bill amount
+   * @apiParam {Boolean} orders[isPaid] Payment status of order
+   * @apiParam {Object[]} menu Array of menu objects
+   * @apiParam {Object[]} menu[items] Array of item objects in the menu
+   * @apiParam {String} items[name] Name of the item
+   * @apiParam {Number} items[price] Price of the item
+   * @apiParam {Object[]} tables Array of table objects
+   * @apiParam {String} tables[qrlink] Link to the url of the table
+   * @apiParam {Number} tables[capacity] Customer capacity of the table
+   *
+   * @apiSuccess {String} json-response Restaurant added!
+   * @apiError 400 Error
+   * @apiError 403 Unauthorized
+   */
+
+  app.post(
+    "/restaurant/signup",
+    [verifySignUpRestaurant.checkDuplicateUsernameOrEmail],
+    controller.signup_restaurant
+  );
+
+  /**
+   * @api {post} http://localhost:5000/restaurant/signin Restaurants signin
+   * @apiName Restaurants signin
+   * @apiGroup Restaurant
+   *
+   * @apiParam {String} name Name of the restaurant
+   * @apiParam {String} password Password of the restaurant (Min Length <code>4</code>)
+   *
+   * @apiSuccess {Object} json-response Restaurant
+   * @apiError 404 User not found
+   * @apiError 401 Password incorrect
+   * @apiError 500 Error
+   */
+  app.post("/restaurant/signin", controller.signin_restaurant);
+};
