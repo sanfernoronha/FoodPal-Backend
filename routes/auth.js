@@ -36,7 +36,7 @@ module.exports = function (app) {
    * @apiName Customer Signin
    * @apiGroup Customer
    *
-   * @apiParam {String} name Name of the customer
+   * @apiParam {String} email Email of the customer
    * @apiParam {String} password Password of the customer (Min Length <code>4</code>)
    *
    * @apiSuccess {Object} json-response Customer
@@ -88,7 +88,7 @@ module.exports = function (app) {
    * @apiName Restaurants signin
    * @apiGroup Restaurant
    *
-   * @apiParam {String} name Name of the restaurant
+   * @apiParam {String} name Email of the restaurant
    * @apiParam {String} password Password of the restaurant (Min Length <code>4</code>)
    *
    * @apiSuccess {Object} json-response Restaurant

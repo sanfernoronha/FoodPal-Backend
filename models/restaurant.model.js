@@ -34,6 +34,10 @@ const tableSchema = new Schema({
     type: Number,
     required: true,
   },
+  tableNumber: {
+    type: Number,
+    required: true
+  }
 });
 
 const ordersSchema = new Schema(
@@ -108,6 +112,13 @@ const restaurantSchema = new Schema(
       required: true,
       trim: true,
       minlength: 3,
+    },
+    address: {
+      type: String,
+      required: true,
+      trim: true,
+      minlength: 5,
+      maxlength: 45
     },
     orders: [ordersSchema],
     menu: [menuSectionSchema],

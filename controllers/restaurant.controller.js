@@ -26,6 +26,7 @@ exports.updateRestaurantById = (req, res) => {
     restaurant.orders = req.body.orders;
     restaurant.menu = req.body.menu;
     restaurant.tables = req.body.tables;
+    restaurant.address = req.body.address;
 
     restaurant
       .save()

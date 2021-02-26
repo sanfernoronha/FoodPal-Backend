@@ -13,7 +13,7 @@ module.exports = function (app) {
   // app.get("/customers/all", [authJwt.verifyToken], controller.allAccess);
 
   /**
-   * @api {get} http://localhost:5000/customers/:id Get Customer by Id
+   * @api {get} http://localhost:5000/customer/:id Get Customer by Id
    * @apiName GetCustomerById
    * @apiGroup Customer
    *
@@ -24,10 +24,10 @@ module.exports = function (app) {
    * @apiError 403 Unauthorized
    *
    */
-  app.get("/customers/:id", [authJwt.verifyToken, controller.getCustomerById]);
+  app.get("/customer/:id", [authJwt.verifyToken, controller.getCustomerById]);
 
   /**
-   * @api {delete} http://localhost:5000/customers/:id Delete Customer by Id
+   * @api {delete} http://localhost:5000/customer/:id Delete Customer by Id
    * @apiName DeleteCustomerById
    * @apiGroup Customer
    *
@@ -37,13 +37,13 @@ module.exports = function (app) {
    * @apiError 400 Error
    * @apiError 403 Unauthorized
    */
-  app.delete("/customers/:id", [
+  app.delete("/customer/:id", [
     authJwt.verifyToken,
     controller.deleteCustomerById,
   ]);
 
   /**
-   * @api {patch} http://localhost:5000/customers/:id Update Customer by Id
+   * @api {patch} http://localhost:5000/customer/:id Update Customer by Id
    * @apiName UpdateCustomerById
    * @apiGroup Customer
    *
@@ -61,7 +61,7 @@ module.exports = function (app) {
    * @apiError 403 Unauthorized
    */
   app.patch(
-    "/customers/:id",
+    "/customer/:id",
     [authJwt.verifyToken],
     controller.updateCustomerById
   );

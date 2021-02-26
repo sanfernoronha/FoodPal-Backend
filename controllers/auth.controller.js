@@ -23,7 +23,7 @@ exports.signup = (req, res) => {
 
 exports.signin = (req, res) => {
   Customer.findOne({
-    name: req.body.name,
+    email: req.body.email,
   }).exec((err, customer) => {
     if (err) {
       res.status(500).send({ message: err });
@@ -67,6 +67,7 @@ exports.signup_restaurant = (req, res) => {
   const tables = req.body.tables;
   const email = req.body.email;
   const password = bcrypt.hashSync(req.body.password, 8);
+  const address = req.body.address;
 
   const newRestaurant = new Restaurant({
     name,
@@ -76,6 +77,7 @@ exports.signup_restaurant = (req, res) => {
     tables,
     email,
     password,
+    address
   });
 
   newRestaurant
@@ -86,7 +88,7 @@ exports.signup_restaurant = (req, res) => {
 
 exports.signin_restaurant = (req, res) => {
   Restaurant.findOne({
-    name: req.body.name,
+    email: req.body.email,
   }).exec((err, restaurant) => {
     if (err) {
       res.status(500).send({ message: err });

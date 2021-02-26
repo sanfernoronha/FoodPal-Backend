@@ -11,7 +11,7 @@ module.exports = function (app) {
   });
 
   /**
-   * @api {get} http://localhost:5000/restaurants/ Get restaurants
+   * @api {get} http://localhost:5000/restaurant/ Get restaurants
    * @apiName GetRestaurants
    * @apiGroup Restaurant
    *
@@ -19,10 +19,10 @@ module.exports = function (app) {
    * @apiError 400 Error
    * @apiError 403 Unauthorized
    */
-  app.get("/restaurants/", [authJwt.verifyToken], controller.getAllRestaurants);
+  app.get("/restaurant/", [authJwt.verifyToken], controller.getAllRestaurants);
 
   /**
-   * @api {get} http://localhost:5000/restaurants/:id Get Restaurant by Id
+   * @api {get} http://localhost:5000/restaurant/:id Get Restaurant by Id
    * @apiName GetUserById
    * @apiGroup Restaurant
    *
@@ -33,13 +33,13 @@ module.exports = function (app) {
    * @apiError 403 Unauthorized
    *
    */
-  app.get("/restaurants/:id", [
+  app.get("/restaurant/:id", [
     authJwt.verifyToken,
     controller.getRestaurantById,
   ]);
 
   /**
-   * @api {delete} http://localhost:5000/restaurants/:id Delete Restaurant by Id
+   * @api {delete} http://localhost:5000/restaurant/:id Delete Restaurant by Id
    * @apiName DeleteRestaurantById
    * @apiGroup Restaurant
    *
@@ -49,13 +49,13 @@ module.exports = function (app) {
    * @apiError 400 Error
    * @apiError 403 Unauthorized
    */
-  app.delete("/restaurants/:id", [
+  app.delete("/restaurant/:id", [
     authJwt.verifyToken,
     controller.deleteRestaurantById,
   ]);
 
   /**
-   * @api {patch} http://localhost:5000/restaurants/:id Update Restaurant by Id
+   * @api {patch} http://localhost:5000/restaurant/:id Update Restaurant by Id
    * @apiName UpdateRestaurantById
    * @apiGroup Restaurant
    *
@@ -87,13 +87,13 @@ module.exports = function (app) {
    * @apiError 403 Unauthorized
    */
   app.patch(
-    "/restaurants/:id",
+    "/restaurant/:id",
     [authJwt.verifyToken],
     controller.updateRestaurantById
   );
 
   /**
-   * @api {post} http://localhost:5000/restaurants/order Add orders at restaurant
+   * @api {post} http://localhost:5000/restaurant/order Add orders at restaurant
    * @apiName AddOrders
    * @apiGroup Restaurant
    *
@@ -114,5 +114,5 @@ module.exports = function (app) {
    * @apiError 400 Error
    * @apiError 403 Unauthorized
    */
-  app.post("/restaurants/order", [authJwt.verifyToken], controller.addOrders);
+  app.post("/restaurant/order", [authJwt.verifyToken], controller.addOrders);
 };
