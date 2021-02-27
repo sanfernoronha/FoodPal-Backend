@@ -8,19 +8,19 @@ exports.getAllRestaurants = (req, res) => {
 };
 
 exports.getRestaurantById = (req, res) => {
-  Restaurant.findById(req.params.id)
+  Restaurant.findById(req.userId)
     .then((restaurant) => res.status(200).json(restaurant))
     .catch((err) => res.status(400).json("Error: " + err));
 };
 
 exports.deleteRestaurantById = (req, res) => {
-  Restaurant.findByIdAndDelete(req.params.id)
+  Restaurant.findByIdAndDelete(req.userId)
     .then(() => res.status(200).json("Restaurant deleted"))
     .catch((err) => res.status(400).json("Error: " + err));
 };
 
 exports.updateRestaurantById = (req, res) => {
-  Restaurant.findById(req.params.id).then((restaurant) => {
+  Restaurant.findById(req.userId).then((restaurant) => {
     restaurant.name = req.body.name;
     restaurant.city = req.body.city;
     restaurant.orders = req.body.orders;

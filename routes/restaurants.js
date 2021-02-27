@@ -11,7 +11,7 @@ module.exports = function (app) {
   });
 
   /**
-   * @api {get} http://localhost:5000/restaurant/ Get restaurants
+   * @api {get} http://localhost:5000/restaurant/all Get restaurants
    * @apiName GetRestaurants
    * @apiGroup Restaurant
    *
@@ -19,47 +19,51 @@ module.exports = function (app) {
    * @apiError 400 Error
    * @apiError 403 Unauthorized
    */
-  app.get("/restaurant/", [authJwt.verifyToken], controller.getAllRestaurants);
+  app.get(
+    "/restaurant/all",
+    [authJwt.verifyToken],
+    controller.getAllRestaurants
+  );
 
   /**
-   * @api {get} http://localhost:5000/restaurant/:id Get Restaurant by Id
-   * @apiName GetUserById
+   * @api {get} http://localhost:5000/restaurant/get Get Restaurant
+   * @apiName GetRestaurant
    * @apiGroup Restaurant
    *
-   * @apiParam {String} id Restaurant id
+   * @apiHeader {String} x-access-token= <code>Token</code> JWT Token as "Token"
    *
    * @apiSuccess {Object} Restaurant object
    * @apiError 400 Error
    * @apiError 403 Unauthorized
    *
    */
-  app.get("/restaurant/:id", [
+  app.get("/restaurant/get", [
     authJwt.verifyToken,
     controller.getRestaurantById,
   ]);
 
   /**
-   * @api {delete} http://localhost:5000/restaurant/:id Delete Restaurant by Id
-   * @apiName DeleteRestaurantById
+   * @api {delete} http://localhost:5000/restaurant/delete Delete Restaurant
+   * @apiName DeleteRestaurant
    * @apiGroup Restaurant
    *
-   * @apiParam {String} id Restaurant id
+   * @apiHeader {String} x-access-token= <code>Token</code> JWT Token as "Token"
    *
    * @apiSuccess {String} json-response Restaurant deleted!
    * @apiError 400 Error
    * @apiError 403 Unauthorized
    */
-  app.delete("/restaurant/:id", [
+  app.delete("/restaurant/delete", [
     authJwt.verifyToken,
     controller.deleteRestaurantById,
   ]);
 
   /**
-   * @api {patch} http://localhost:5000/restaurant/:id Update Restaurant by Id
-   * @apiName UpdateRestaurantById
+   * @api {patch} http://localhost:5000/restaurant/update Update Restaurant
+   * @apiName UpdateRestaurant
    * @apiGroup Restaurant
    *
-   * @apiParam {String} id Restaurant id
+   * @apiHeader {String} x-access-token= <code>Token</code> JWT Token as "Token"
    *
    * @apiParam {String} name Name of the Restaurant
    * @apiParam {String} city City where restaurant is located
@@ -87,7 +91,7 @@ module.exports = function (app) {
    * @apiError 403 Unauthorized
    */
   app.patch(
-    "/restaurant/:id",
+    "/restaurant/update",
     [authJwt.verifyToken],
     controller.updateRestaurantById
   );
