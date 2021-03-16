@@ -51,10 +51,9 @@ exports.signin = (req, res) => {
     });
 
     res.status(200).send({
-      id: customer._id,
-      name: customer.name,
-      email: customer.email,
+      
       accessToken: token,
+      customer: customer,
     });
   });
 };
@@ -116,10 +115,8 @@ exports.signin_restaurant = (req, res) => {
     });
 
     res.status(200).send({
-      id: restaurant._id,
-      name: restaurant.name,
-      email: restaurant.email,
       accessToken: token,
+      restaurant:restaurant
     });
   });
 };

@@ -95,28 +95,4 @@ module.exports = function (app) {
     [authJwt.verifyToken],
     controller.updateRestaurantById
   );
-
-  // /**
-  //  * @api {post} http://localhost:5000/restaurant/order Add orders at restaurant
-  //  * @apiName AddOrders
-  //  * @apiGroup Restaurant
-  //  *
-  //  * @apiParam {String} res_id Id of the restaurant
-  //  * @apiParam {Object[]} orders Array of orders
-  //  * @apiParam {Object[]} orders[items] Array containing ordered items
-  //  * @apiParam {String} items[itemName] Name of the item
-  //  * @apiParam {Number} items[quantity] Quantity ordered of the item
-  //  * @apiParam {Number} items[price] Price of item
-  //  * @apiParam {Number} orders[tableNumber] Table number
-  //  * @apiParam {Boolean} orders[isPrepared] Preparation status of item
-  //  * @apiParam {Boolean} orders[isPreparing] Preparation commencement status
-  //  * @apiParam {Boolean} orders[isServed] Service Status of the item
-  //  * @apiParam {Number} orders[total] Total bill amount
-  //  * @apiParam {Boolean} orders[isPaid] Payment status of order
-  //  *
-  //  * @apiSuccess {String} json-response Order placed!
-  //  * @apiError 400 Error
-  //  * @apiError 403 Unauthorized
-  //  */
-  // app.post("/restaurant/order", [authJwt.verifyToken], controller.addOrders);
 };
