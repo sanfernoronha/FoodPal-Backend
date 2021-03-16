@@ -61,7 +61,7 @@ exports.signin = (req, res) => {
 exports.signup_restaurant = (req, res) => {
   const name = req.body.name;
   const city = req.body.city;
-  const orders = null;
+  // const orders = null;
   const menu = req.body.menu;
   const tables = req.body.tables;
   const email = req.body.email;
@@ -71,7 +71,7 @@ exports.signup_restaurant = (req, res) => {
   const newRestaurant = new Restaurant({
     name,
     city,
-    orders,
+    // orders,
     menu,
     tables,
     email,

@@ -48,7 +48,7 @@ exports.updateRestaurantById = (req, res) => {
   Restaurant.findById(req.userId).then((restaurant) => {
     restaurant.name = req.body.name;
     restaurant.city = req.body.city;
-    restaurant.orders = req.body.orders;
+    // restaurant.orders = req.body.orders;
     restaurant.menu = req.body.menu;
     restaurant.tables = req.body.tables;
     restaurant.address = req.body.address;

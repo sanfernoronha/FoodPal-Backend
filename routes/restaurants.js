@@ -67,17 +67,17 @@ module.exports = function (app) {
    *
    * @apiParam {String} name Name of the Restaurant
    * @apiParam {String} city City where restaurant is located
-   * @apiParam {Object[]} orders Array of orders
-   * @apiParam {Object[]} orders[items] Array containing ordered items
-   * @apiParam {String} items[itemName] Name of the item
-   * @apiParam {Number} items[quantity] Quantity ordered of the item
-   * @apiParam {Number} items[price] Price of item
-   * @apiParam {Number} orders[tableNumber] Table number
-   * @apiParam {Boolean} orders[isPrepared] Preparation status of item
-   * @apiParam {Boolean} orders[isPreparing] Preparation commencement status
-   * @apiParam {Boolean} orders[isServed] Service Status of the item
-   * @apiParam {Number} orders[total] Total bill amount
-   * @apiParam {Boolean} orders[isPaid] Payment status of order
+  //  * @apiParam {Object[]} orders Array of orders
+  //  * @apiParam {Object[]} orders[items] Array containing ordered items
+  //  * @apiParam {String} items[itemName] Name of the item
+  //  * @apiParam {Number} items[quantity] Quantity ordered of the item
+  //  * @apiParam {Number} items[price] Price of item
+  //  * @apiParam {Number} orders[tableNumber] Table number
+  //  * @apiParam {Boolean} orders[isPrepared] Preparation status of item
+  //  * @apiParam {Boolean} orders[isPreparing] Preparation commencement status
+  //  * @apiParam {Boolean} orders[isServed] Service Status of the item
+  //  * @apiParam {Number} orders[total] Total bill amount
+  //  * @apiParam {Boolean} orders[isPaid] Payment status of order
    * @apiParam {Object[]} menu Array of menu objects
    * @apiParam {Object[]} menu[items] Array of item objects in the menu
    * @apiParam {String} items[name] Name of the item
