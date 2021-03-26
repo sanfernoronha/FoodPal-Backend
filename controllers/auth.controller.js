@@ -6,6 +6,7 @@ var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
 exports.signup = (req, res) => {
+  // console.log("Signup customer");
   const customer = new Customer({
     name: req.body.name,
     email: req.body.email,
@@ -14,7 +15,7 @@ exports.signup = (req, res) => {
     phone_number: req.body.phone_number,
     orders: null,
   });
-
+  // console.log(customer);
   customer
     .save()
     .then(() => res.status(200).json("Customer added!"))
@@ -51,7 +52,6 @@ exports.signin = (req, res) => {
     });
 
     res.status(200).send({
-      
       accessToken: token,
       customer: customer,
     });
@@ -76,7 +76,7 @@ exports.signup_restaurant = (req, res) => {
     tables,
     email,
     password,
-    address
+    address,
   });
 
   newRestaurant
@@ -86,6 +86,7 @@ exports.signup_restaurant = (req, res) => {
 };
 
 exports.signin_restaurant = (req, res) => {
+  // console.log("Signing in restaurant");
   Restaurant.findOne({
     email: req.body.email,
   }).exec((err, restaurant) => {
@@ -116,7 +117,7 @@ exports.signin_restaurant = (req, res) => {
 
     res.status(200).send({
       accessToken: token,
-      restaurant:restaurant
+      restaurant: restaurant,
     });
   });
 };

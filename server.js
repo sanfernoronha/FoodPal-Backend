@@ -13,10 +13,10 @@ connectDB();
 // const restaurantRouter = require("./routes/restaurants");
 const orderRouter = require("./routes/orders");
 require("./routes/auth")(app);
-require("./routes/customers")(app);
-require("./routes/restaurants")(app);
+require("./routes/customers")(app); //needs a get restaurant
+require("./routes/restaurants")(app); //has the OG get restaurant
 // app.use("/customers", customerRouter);
-app.use("/orders", orderRouter);
+app.use("/orders", orderRouter); //weird one wait for it
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
