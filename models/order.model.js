@@ -30,6 +30,10 @@ const ordersSchema = new Schema(
           minlength: 3,
           required: true,
         },
+        itemId: {
+          type: String,
+          required: true,
+        },
         quantity: {
           type: Number,
           required: true,
@@ -38,18 +42,18 @@ const ordersSchema = new Schema(
           type: Number,
           required: true,
         },
-        isPrepared:{
+        isPrepared: {
           type: Boolean,
           required: true,
         },
-        isPreparing:{
+        isPreparing: {
           type: Boolean,
           required: true,
         },
-        isServed:{
-          type:Boolean,
+        isServed: {
+          type: Boolean,
           requird: true,
-        }
+        },
       },
     ],
   },

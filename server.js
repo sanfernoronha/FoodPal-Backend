@@ -15,8 +15,9 @@ const orderRouter = require("./routes/orders");
 require("./routes/auth")(app);
 require("./routes/customers")(app); //needs a get restaurant
 require("./routes/restaurants")(app); //has the OG get restaurant
+require("./routes/orders")(app);
 // app.use("/customers", customerRouter);
-app.use("/orders", orderRouter); //weird one wait for it
+// app.use("/orders", orderRouter); //weird one wait for it
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
