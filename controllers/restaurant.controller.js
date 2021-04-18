@@ -14,6 +14,7 @@ Notes:-
 const Restaurant = require("../models/restaurant.model");
 var bcrypt = require("bcryptjs");
 
+
 exports.getAllRestaurants = (req, res) => {
   Restaurant.find()
     .then((restaurants) => {
@@ -60,4 +61,41 @@ exports.updateRestaurantById = (req, res) => {
   });
 };
 
+exports.addTable = (req, res) => {
+  Restaurant.findById(req.userId).then((restaurant) => {
+    var tables = restaurant.tables;
+    var new_table = {
+      qrlink: req.body.qrlink,
+      capacity: req.body.capacity,
+      tableNumber: req.body.tableNumber
+    }
+    tables.push(new_table);
 
+
+
+    // restaurant.orders = req.body.orders;
+
+    restaurant.tables = tables;
+    restaurant
+      .save()
+      .then(() => res.status(200).json("Table added"))
+      .catch((err) => res.status(400).json("Error: " + err));
+
+  })
+}
+
+
+exports.updateTable = (req, res) => {
+  Restaurant.findById(req.userId).then((restaurant) => {
+
+    var tableIndex = restaurant.tables.findIndex(item => item._id.toString() === req.body._id);
+    restaurant.tables[tableIndex].qrlink = req.body.qrlink;
+    restaurant.tables[tableIndex].capacity = req.body.capacity;
+    restaurant.tables[tableIndex].tableNumber = req.body.tableNumber;
+    restaurant
+      .save()
+      .then(() => res.status(200).json("Table updated"))
+      .catch((err) => res.status(400).json("Error: " + err));
+
+  })
+}

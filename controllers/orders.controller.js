@@ -22,6 +22,26 @@ exports.getOrderById = (req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 };
 
+exports.getOrderByRestaurantId = (req, res) => {
+  Order.find({ "restaurantId": req.userId }).then((orders) => {
+    if (orders) {
+      return res.status(200).json(orders)
+    } else {
+      return res.status(404).json("No orders found for this restaurant")
+    }
+  })
+}
+
+exports.getOrderByCustomerId = (req, res) => {
+  Order.find({ "userId": req.userId }).then((orders) => {
+    if (orders) {
+      return res.status(200).json(orders)
+    } else {
+      return res.status(404).json("No orders found for this customer")
+    }
+  })
+}
+
 exports.addOrder = (req, res) => {
   const userId = req.userId; //from token
   const restaurantId = req.body.restaurantId; //from body

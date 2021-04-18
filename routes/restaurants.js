@@ -84,4 +84,43 @@ module.exports = function (app) {
     [authJwt.verifyToken],
     controller.updateRestaurantById
   );
+  /**
+   * @api {post} http://localhost:5000/restaurant/table/add Add table
+    * @apiName Add Table
+    * @apiGroup Restaurant
+    *
+    * @apiHeader {String} x-access-token= <code>Token</code> JWT Token as "Token"
+    * 
+    * @apiParam {String} qrlink QR link of table
+    * @apiParam {Number} capacity Capacity of table
+    * @apiParam {Number} tableNumber Table Number
+    * @apiSuccess {String} json-response Table added
+    * @apiError 400 Error
+    * @apiError 403 Unauthorized
+   */
+  app.post(
+    "/restaurant/table/add",
+    [authJwt.verifyToken],
+    controller.addTable
+  )
+  /**
+  * @api {patch} http://localhost:5000/restaurant/table/update Update table
+   * @apiName Update Table
+   * @apiGroup Restaurant
+   *
+   * @apiHeader {String} x-access-token= <code>Token</code> JWT Token as "Token"
+   *
+   * @apiParam {String} _id Id of table
+   * @apiParam {String} qrlink QR link of table
+   * @apiParam {Number} capacity Capacity of table
+   * @apiParam {Number} tableNumber Table Number
+   * @apiSuccess {String} json-response Table updated
+   * @apiError 400 Error
+   * @apiError 403 Unauthorized
+  */
+  app.patch(
+    "/restaurant/table/update",
+    [authJwt.verifyToken],
+    controller.updateTable
+  )
 };

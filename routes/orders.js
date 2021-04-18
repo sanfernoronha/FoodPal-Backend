@@ -80,7 +80,36 @@ module.exports = function (app) {
     [authJwt.verifyToken],
     controller.updateOrder
   );
+
+  /**
+   * @api {get} http://localhost:5000/orders/restaurant Get orders by restuarant id 
+   * @apiName Get restaurant by id
+   * @apiGroup Order
+   * 
+   * @apiHeader {String} x-access-token= <code>Token</code> JWT Token as "Token"
+   * 
+   * @apiSuccess {Object[]} orders List of orders by restaurant id
+   * @apiError 400 Error
+   * @apiError 403 Unauthorized
+   * 
+   * */
+  app.get("/orders/restaurant", [authJwt.verifyToken], controller.getOrderByRestaurantId)
+  /**
+     * @api {get} http://localhost:5000/orders/restaurant Get orders by customer id
+     * @apiName Get customer by id
+     * @apiGroup Order
+     *
+     * @apiHeader {String} x-access-token= <code>Token</code> JWT Token as "Token"
+     *
+     * @apiSuccess {Object[]} orders List of orders by customer id
+     * @apiError 400 Error
+     * @apiError 403 Unauthorized
+     *
+     * */
+  app.get("/orders/customer", [authJwt.verifyToken], controller.getOrderByCustomerId)
 };
+
+
 
 //ignore for now
 
